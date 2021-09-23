@@ -216,6 +216,111 @@ return res.json({
 
 });
 
+
+   /*
+Route           /book/delete
+Description    delete a book
+Access          PUBLIC
+Parameter       isbn
+Methods         DELETE
+*/
+
+booky.delete("/book/delete/:isbn",(req,res)=>{
+
+//replace the whole database   ----> filter
+
+const updatedBookDatabase = database.books.filter((book)=>
+book.ISBN !== req.params.isbn);
+
+database.books = updatedBookDatabase;
+return res.json({books:database.books});
+
+//edit at single point directly to master database
+
+
+});
+
+   /*
+Route           /book/delete/author
+Description    delete an  author from a book
+Access          PUBLIC
+Parameter       isbn , author id
+Methods         DELETE
+*/
+
+booky.delete("/book/delete/author/:isbn/:authorId",(req,res)=>{
+
+//update the book database
+database.books.forEach((book)=>{
+  if(book.ISBN===req.params.isbn){
+    const newAuthorList = book.author.filter(
+      (authors)=>authors!==parseInt(req.params.authorId)
+      );
+      book.author = newAuthorList;
+      return;
+  }
+});
+
+//update the author database
+database.author.forEach((authors)=>{
+if(authors.id===parseInt(req.params.authorId)) {
+  const newBooksList = authors.books.filter( 
+  (book)=> book !==req.params.isbn
+  );
+authors.books = newBooksList;
+return;
+}
+});
+
+return res.json({
+  message:"author was deleted",
+book:database.books,
+authors:database.author,
+});
+});
+
+
+/*
+Route           /publication/delete/book
+Description    delete a book from publication
+Access          PUBLIC
+Parameter       isbn , publication id
+Methods         DELETE
+*/
+
+booky.delete("/publication/delete/book/:isbn/:pubId",(req,res)=>
+{
+//update publication database
+database.publication.forEach((publications)=>{
+  if(publications.id === parseInt(req.params.pubId))
+  {
+    const newBooksList = publications.books.filter(
+      (book)=> book !== req.params.isbn
+    );
+
+publications.books = newBooksList;
+return; 
+
+  }
+});
+//update book database
+
+database.books.forEach((book)=>{
+  if(book.ISBN === req.params.isbn)
+  {
+book.publications = 0;  //no publication available
+return;
+  }
+});
+
+return res.json({
+  books:database.books,
+  publications:  database.pubications,
+}); 
+});
+
+
+
 booky.listen(3000,() => console.log("Hey server is running "));
 
 

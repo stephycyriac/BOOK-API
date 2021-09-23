@@ -1,6 +1,6 @@
-const books = [
+let books = [
     {
-ISBN:"{book123}",
+ISBN:"book123",
 title:"meulha",
 pubDate:"2021-03-03",
 language:"en",

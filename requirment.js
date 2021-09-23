@@ -18,6 +18,8 @@
 //BOOKS
 //GET
 //we need an api 
+
+
 //to get books                                               ------> done
 //to get specific books                                      ------> done
 //to get list of books based on category                     ------> done
@@ -32,8 +34,8 @@
 
 
 //DELETE
-//delete a book
-//delete an author
+//delete a book                                             ------> done
+//delete an author                                          ------> done
 
 
 
@@ -51,7 +53,7 @@
 //update author name                                             {task}
 
 //DELETE
-//delete an author
+//delete an author                                               {task}
 
 
 //PUBLICATIONS
@@ -67,8 +69,8 @@
 
 //PUT
 //update the publication name                                     {task}
-//update/add books to publications
+//update/add books to publications                                  BUG
 
 //DELETE
-//delete the publication  
-//delete a book from publication
+//delete the publication                                             BUG
+//delete a book from publication                                   {task}
