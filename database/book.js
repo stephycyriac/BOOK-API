@@ -15,5 +15,5 @@ publications:Number,
 
 //create a  book model
 
-const BookModel = mongoose.model(BookSchema);
+const BookModel = mongoose.model("books ",BookSchema);
 module.exports = BookModel;

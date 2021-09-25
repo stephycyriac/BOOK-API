@@ -6,6 +6,11 @@ const mongoose = require("mongoose");
 //database
 const database = require("./database/index.js");
 
+//models
+const BookModels = require("./database/book");
+const AuthorModels = require("./database/author");
+const PublicationModel = require("./database/publication")
+
 //initialization
 
 const booky = express();
