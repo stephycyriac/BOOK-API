@@ -1,10 +1,10 @@
-
+require("dotenv").config(); //line number one 
 
 const express = require ("express");
-
+const mongoose = require("mongoose");
 
 //database
-const database = require("./database");
+const database = require("./database/index.js");
 
 //initialization
 
@@ -13,6 +13,23 @@ const booky = express();
 // configuration
 booky.use(express.json());
 
+console.log(process.env.MONGO_URL);
+//establish database connection 
+
+mongoose.connect(process.env.MONGO_URL,
+{
+  useNewUrlParser:true,
+  useUnifiedTopology:true,
+  useFindAndModify:false,
+  useCreateIndex:true,
+}
+).then(()=>console.log("connection estabished!!!!")); 
+
+/* mongoose.connect('mongodb+srv://stephy8137:blXxKRvflAOmxlPK@cluster0.ffihj.mongodb.net/Booky?retryWrites=true&w=majority')
+.then(()=>console.log("connection estabished!!!!")); */
+
+//mongoose.connect('mongodb+srv://stephy8137:blXxKRvflAOmxlPK@cluster0.ffihj.mongodb.net/Booky?retryWrites=true&w=majority');
+//.then(()=>console.log("connection estabished!!!!"));
 
 /*
 route               /
