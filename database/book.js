@@ -9,7 +9,7 @@ pubDate:String,
 language:String,
 author:[Number],
 numPage:Number,
-category:[String],
+category:[String], 
 publications:Number,
 });
 
